@@ -9,13 +9,16 @@ Per ogni seduta la pagina mostra:
 - un'illustrazione animata: mappe storiche, grafici o scene (il Rubicone, Alesia, Cesare e Cleopatra, le Idi di marzo, il funerale di Cesare, la morte di Cleopatra, lo scudo d'oro di Augusto);
 - il testo della seduta, i protagonisti con i ritratti antichi, la composizione dell'aula e le fonti.
 
-La pagina pubblicata è **`index.html`**: è un unico file autonomo, con immagini e illustrazioni incorporate. Si può aprire direttamente nel browser o pubblicare con GitHub Pages.
+La pagina pubblicata è **`index.html`**: è un unico file autonomo, con immagini e illustrazioni incorporate. Accanto ci sono il favicon e l'immagine di anteprima per i social, richiamati dai meta tag Open Graph e X. Si può aprire direttamente nel browser o pubblicare con GitHub Pages.
 
 ## Struttura del repository
 
 ```
-index.html            la pagina finale (unico file da pubblicare)
+index.html            la pagina finale
+og-image.png          anteprima 1200×630 per i link su X e sugli altri social
+favicon.svg, favicon.ico, apple-touch-icon.png, icon-192.png
 src/
+  social/             favicon.svg, og.html e render.py, che rigenera anteprima e favicon
   build.py            inserisce in index.html illustrazioni e immagini generate
   assets/             Augusto di Prima Porta, busto di Cesare, denario DICT PERPETVO (base64)
   mapgen/
