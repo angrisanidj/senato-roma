@@ -19,11 +19,11 @@ Le immagini sono incorporate in `index.html`, ritagliate e talvolta scontornate.
 | Bruto (Palazzo Massimo, Roma) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Portrait_Brutus_Massimo.jpg) | Marie-Lan Nguyen | pubblico dominio | verificata |
 | Catone, bronzo da Volubilis (Museo archeologico di Rabat) | [Flickr, via Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Cat%C3%B3n_(52340687524).jpg) | Ángel M. Felicísimo | CC BY 2.0 | verificata |
 | Sesto Pompeo, aureo MAG PIVS IMP ITER (Cabinet des Médailles, Parigi) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:S_Pomp%C3%A9e_aureus_Sicile_C_des_M.jpg) | Siren-Com | CC BY-SA 3.0 | verificata |
-| Marco Antonio (Musei Vaticani) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Marcus_Antonius_marble_bust_in_the_Vatican_Museums.jpg) | Sergey Sosnovskiy | pubblico dominio | verificata |
+| Marco Antonio (Musei Vaticani) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Marcus_Antonius_marble_bust_in_the_Vatican_Museums.jpg) | Sergey Sosnovskiy (Ancientrome.ru) | CC BY-SA 4.0 | verificata |
 | Lepido, denario LEPIDVS PONT MAX | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Marcus_Aemilius_Lepidus.jpg) | Classical Numismatic Group | CC BY-SA 3.0 | verificata |
 | Ottavia | — | — | — | da identificare |
 
-Il ritratto di Ottavia non corrisponde a nessuna delle sculture catalogate su Wikimedia Commons sotto *Octavia Minor*: va ritrovata la fonte oppure va sostituito con un'immagine a licenza nota.
+Il ritratto di Ottavia ("forse Ottavia minore, Palazzo Massimo" secondo la nota della pagina) non corrisponde a nessuna delle sculture catalogate su Wikimedia Commons sotto *Octavia Minor*, comprese le teste di Ottavia da Velletri conservate a Palazzo Massimo: va ritrovata la fonte oppure va sostituito con un'immagine a licenza nota.
 
 ## Anteprima per i social e favicon
 

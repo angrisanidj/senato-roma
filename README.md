@@ -19,6 +19,7 @@ og-image.png          anteprima 1200×630 per i link su X e sugli altri social
 favicon.svg, favicon.ico, apple-touch-icon.png, icon-192.png
 src/
   social/             favicon.svg, og.html e render.py, che rigenera anteprima e favicon
+                      share.html: pulsanti di condivisione inseriti in fondo a index.html
   build.py            inserisce in index.html illustrazioni e immagini generate
   assets/             Augusto di Prima Porta, busto di Cesare, denario DICT PERPETVO (base64)
   mapgen/
