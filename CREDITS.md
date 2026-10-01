@@ -6,12 +6,12 @@ Le immagini sono incorporate in `index.html`, ritagliate e talvolta scontornate.
 |---|---|---|---|---|
 | Augusto di Prima Porta (Musei Vaticani) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Statue-Augustus.jpg) | Till Niermann | CC BY-SA 2.5 | verificata |
 | Augusto, ritratto tra i protagonisti (dettaglio della stessa statua) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Statue-Augustus.jpg) | Till Niermann | CC BY-SA 2.5 | verificata |
-| Denario CAESAR DICT PERPETVO (RRC 480/10) | Wikimedia Commons | Classical Numismatic Group, www.cngcoins.com | CC BY-SA 2.5 | verificata |
+| Denario CAESAR DICT PERPETVO (RRC 480/10) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Gaius_Julius_Caesar,_denarius,_44_BC,_RRC_480-10.jpg) | Classical Numismatic Group, www.cngcoins.com | CC BY-SA 2.5 | verificata |
 | Pompeo Magno (Louvre, Ma 6196) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Pompey_the_Great.jpg) | Alphanidon | CC BY-SA 4.0 | verificata |
-| Cicerone (Musei Capitolini) | Wikimedia Commons | Glauco92 | CC BY-SA 3.0 | verificata |
-| Agrippa (Louvre) | Wikimedia Commons | Shawn Lipowski | CC BY-SA 2.5 | verificata |
-| Silla, denario | Wikimedia Commons | Classical Numismatic Group | CC BY-SA | verificata |
-| Testa di gallo prigioniero, denario di L. Ostilio Saserna (identificazione con Vercingetorige incerta) | Wikimedia Commons | Classical Numismatic Group | CC BY-SA | verificata |
+| Cicerone (Musei Capitolini) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Cicero_-_Musei_Capitolini.JPG) | Glauco92 | CC BY-SA 3.0 | verificata |
+| Agrippa (Louvre) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Marcus_agrippa_louvre_portrait.jpg) | Shawn Lipowski | CC BY-SA 2.5 | verificata |
+| Silla, denario di Q. Pompeo Rufo (RRC 434/1) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Q._Pompeius_Rufus,_denarius,_54_BC,_RRC_434-1_(Sulla_only).jpg) | Classical Numismatic Group | CC BY-SA 2.5 | verificata |
+| Testa di gallo prigioniero, denario di L. Ostilio Saserna, RRC 448/2a (identificazione con Vercingetorige incerta) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:L._Hostilius_Saserna,_denarius,_48_BC,_RRC_448-2a.jpg) | Classical Numismatic Group | CC BY-SA 2.5 | verificata |
 | Cesare, busto Chiaramonti (Musei Vaticani) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Gaius_Iulius_Caesar_(Vatican_Museum).jpg) | autore ignoto | pubblico dominio | verificata |
 | Cleopatra (Altes Museum, Berlino) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Kleopatra-VII.-Altes-Museum-Berlin1.jpg) | Louis le Grand | pubblico dominio | verificata |
 | Crasso (Ny Carlsberg Glyptotek) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Roman_bust_in_Ny_Carlsberg_Glyptotek.jpg) | Diagram Lajard | CC0 | verificata |
