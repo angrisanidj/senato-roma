@@ -21,9 +21,9 @@ Le immagini sono incorporate in `index.html`, ritagliate e talvolta scontornate.
 | Sesto Pompeo, aureo MAG PIVS IMP ITER (Cabinet des Médailles, Parigi) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:S_Pomp%C3%A9e_aureus_Sicile_C_des_M.jpg) | Siren-Com | CC BY-SA 3.0 | verificata |
 | Marco Antonio (Musei Vaticani) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Marcus_Antonius_marble_bust_in_the_Vatican_Museums.jpg) | Sergey Sosnovskiy (Ancientrome.ru) | CC BY-SA 4.0 | verificata |
 | Lepido, denario LEPIDVS PONT MAX | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Marcus_Aemilius_Lepidus.jpg) | Classical Numismatic Group | CC BY-SA 3.0 | verificata |
-| Ottavia | — | — | — | da identificare |
+| Ottavia minore (identificazione probabile), testa da Palestrina (Museo Nazionale Romano, Palazzo Massimo, inv. 124500) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Female_portrait_Terme_inv124500.jpg) | Marie-Lan Nguyen | CC BY 4.0 | verificata |
 
-Il ritratto di Ottavia ("forse Ottavia minore, Palazzo Massimo" secondo la nota della pagina) non corrisponde a nessuna delle sculture catalogate su Wikimedia Commons sotto *Octavia Minor*, comprese le teste di Ottavia da Velletri conservate a Palazzo Massimo: va ritrovata la fonte oppure va sostituito con un'immagine a licenza nota.
+Tutte le immagini hanno ora autore e licenza verificati sulla pagina del file su Wikimedia Commons.
 
 ## Anteprima per i social e favicon
 
