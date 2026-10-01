@@ -1,0 +1,5 @@
+# Unisce le quattro parti nel generatore gen2.mjs (le sedute 1-14 di partD si inseriscono prima dell'output di partC)
+c = open('partC.mjs').read()
+i = c.index("console.error('--- desktop');")
+open('gen2.mjs', 'w').write(open('partA.mjs').read() + open('partB.mjs').read() + c[:i] + open('partD.mjs').read() + "\n" + c[i:])
+print('gen2.mjs pronto')

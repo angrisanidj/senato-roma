@@ -1,0 +1,4 @@
+node_modules/
+src/mapgen/gen2.mjs
+src/mapgen/viz.json
+.DS_Store
