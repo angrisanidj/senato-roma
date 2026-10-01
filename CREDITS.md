@@ -7,7 +7,7 @@ Le immagini sono incorporate in `index.html`, ritagliate e talvolta scontornate.
 | Augusto di Prima Porta (Musei Vaticani) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Statue-Augustus.jpg) | Till Niermann | CC BY-SA 2.5 | verificata |
 | Augusto, ritratto tra i protagonisti (dettaglio della stessa statua) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Statue-Augustus.jpg) | Till Niermann | CC BY-SA 2.5 | verificata |
 | Denario CAESAR DICT PERPETVO (RRC 480/10) | Wikimedia Commons | Classical Numismatic Group, www.cngcoins.com | CC BY-SA 2.5 | verificata |
-| Pompeo Magno (Ny Carlsberg Glyptotek) | Wikimedia Commons | Alphanidon | CC BY-SA 4.0 | verificata |
+| Pompeo Magno (Louvre, Ma 6196) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Pompey_the_Great.jpg) | Alphanidon | CC BY-SA 4.0 | verificata |
 | Cicerone (Musei Capitolini) | Wikimedia Commons | Glauco92 | CC BY-SA 3.0 | verificata |
 | Agrippa (Louvre) | Wikimedia Commons | Shawn Lipowski | CC BY-SA 2.5 | verificata |
 | Silla, denario | Wikimedia Commons | Classical Numismatic Group | CC BY-SA | verificata |
@@ -15,7 +15,7 @@ Le immagini sono incorporate in `index.html`, ritagliate e talvolta scontornate.
 | Cesare, busto Chiaramonti (Musei Vaticani) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Gaius_Iulius_Caesar_(Vatican_Museum).jpg) | autore ignoto | pubblico dominio | verificata |
 | Cleopatra (Altes Museum, Berlino) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Kleopatra-VII.-Altes-Museum-Berlin1.jpg) | Louis le Grand | pubblico dominio | verificata |
 | Crasso (Ny Carlsberg Glyptotek) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Roman_bust_in_Ny_Carlsberg_Glyptotek.jpg) | Diagram Lajard | CC0 | verificata |
-| Ottaviano, busto con corona civica ("Augusto Bevilacqua", Glyptothek, Monaco) | [Flickr, via Wikimedia Commons](https://commons.wikimedia.org/wiki/File:The_so_called_%E2%80%9CAugustus_Bevilacqua%E2%80%9D,_bust_of_the_emperor_Augustus_wearing_the_Corona_Civica,_Glyptothek,_Munich_(9897920023).jpg) | Carole Raddato (Following Hadrian) | CC BY-SA 2.0 | verificata |
+| Ottaviano, busto con corona civica, 29 a.C. circa (Musei Capitolini, MC 495) | [Flickr, via Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Bust_of_Augustus_wearing_the_Corona_Civica,_ca._29_BC,_found_in_Rome,_Moi,_Auguste,_Empereur_de_Rome_exhibition,_Grand_Palais,_Paris_-_14464577048.jpg) | Carole Raddato (Following Hadrian) | CC BY-SA 2.0 | verificata |
 | Bruto (Palazzo Massimo, Roma) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Portrait_Brutus_Massimo.jpg) | Marie-Lan Nguyen | pubblico dominio | verificata |
 | Catone, bronzo da Volubilis (Museo archeologico di Rabat) | [Flickr, via Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Cat%C3%B3n_(52340687524).jpg) | Ángel M. Felicísimo | CC BY 2.0 | verificata |
 | Sesto Pompeo, aureo MAG PIVS IMP ITER (Cabinet des Médailles, Parigi) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:S_Pomp%C3%A9e_aureus_Sicile_C_des_M.jpg) | Siren-Com | CC BY-SA 3.0 | verificata |
