@@ -23,7 +23,7 @@ function newScene(m) { return { m, under: '', lines: '', marks: '', hud: '', lab
 function addObsLine(S, samples, r) { let last = null; samples.forEach(p => { if (!last || Math.hypot(p[0] - last[0], p[1] - last[1]) > 4) { S.obs.push([p[0], p[1], r]); last = p; } }); }
 function Arrow(S, lls, col, delay, o = {}) {
   const g = geom(lls.map(l => pt(S.m, l)), o.bend), w = (o.w || 3.2) * (MOB ? 1.15 : 1);
-  S.lines += `<path class="dr" pathLength="1" d="${g.d}" fill="none" stroke="#FBF6EA" stroke-width="${w + 3}" stroke-linecap="round" stroke-opacity=".75" style="animation-delay:${delay}s"/><path class="dr" pathLength="1" d="${g.d}" fill="none" stroke="${col}" stroke-width="${w}" stroke-linecap="round" style="animation-delay:${delay}s"/>`;
+  S.lines += `<path class="dr" pathLength="1" d="${g.d}" fill="none" stroke="#3A2614" stroke-opacity=".16" stroke-width="${w + 2}" stroke-linecap="round" transform="translate(1.5 2.5)" style="animation-delay:${delay}s"/><path class="dr" pathLength="1" d="${g.d}" fill="none" stroke="#FBF6EA" stroke-width="${w + 3}" stroke-linecap="round" stroke-opacity=".75" style="animation-delay:${delay}s"/><path class="dr" pathLength="1" d="${g.d}" fill="none" stroke="${col}" stroke-width="${w}" stroke-linecap="round" style="animation-delay:${delay}s"/>`;
   const a = f1(g.ang * 180 / Math.PI), z = MOB ? 1.2 : 1;
   S.marks += `<polygon class="pop" points="0,0 ${-13 * z},${-6.5 * z} ${-13 * z},${6.5 * z}" fill="${col}" stroke="#FBF6EA" stroke-width="1" transform="translate(${g.end[0]} ${g.end[1]}) rotate(${a})" style="animation-delay:${delay + 1.3}s"/>`;
   addObsLine(S, g.S, w / 2 + 3); S.obs.push([g.end[0], g.end[1], 10]);
@@ -131,8 +131,8 @@ function emitLabel(L, c) {
   let st;
   if (L.kind === 'prov') st = `font-family:'Cinzel','Trajan Pro',Georgia,serif;font-size:${fs}px;letter-spacing:.14em;font-weight:600;paint-order:stroke;stroke:#F3EAD4;stroke-width:3px`;
   else if (L.kind === 'sea') st = `font-family:'Cinzel','Trajan Pro',Georgia,serif;font-size:${fs}px;letter-spacing:.14em;font-style:italic`;
-  else if (L.kind === 'it') st = `font-size:${fs}px;font-style:italic;paint-order:stroke;stroke:#FBF6EA;stroke-width:3px`;
-  else st = `font-size:${fs}px;font-weight:600;paint-order:stroke;stroke:#FBF6EA;stroke-width:4px;stroke-linejoin:round`;
+  else if (L.kind === 'it') st = `font-family:'EB Garamond',Georgia,serif;font-size:${f1(fs * 1.14)}px;font-style:italic;font-weight:500;paint-order:stroke;stroke:#FBF6EA;stroke-width:3px`;
+  else st = `font-family:'EB Garamond',Georgia,serif;font-size:${f1(fs * 1.14)}px;font-weight:700;paint-order:stroke;stroke:#FBF6EA;stroke-width:4px;stroke-linejoin:round`;
   let s = `<text class="pop" x="${f1(x)}" y="${f1(y)}" text-anchor="${anchor}" fill="${L.col}" style="animation-delay:${L.d}s;${st}">`;
   lines.forEach((l, i) => { s += `<tspan x="${f1(x)}" dy="${i ? f1(lh) : 0}"${L.kind === 'prov' && i ? ` style="font-family:inherit;font-size:${f1(L.size * FS * .86)}px;letter-spacing:.02em;font-weight:400;font-style:italic"` : ''}>${l}</tspan>`; });
   return s + '</text>';
@@ -176,7 +176,7 @@ function render(S) {
     }).join('');
     inner = `<style>@keyframes ${name}{${kf}}</style><g class="cam" style="animation:${name} ${T}s ease-in-out both">${inner}</g>`;
   }
-  return inner + S.hud;
+  return inner + `<rect width="${W}" height="${H}" fill="url(#fg-vign)" pointer-events="none"/>` + S.hud;
 }
 
 /* confini approssimativi delle province (c. 60–30 a.C.) */
@@ -354,7 +354,7 @@ function sceneIdes() {
   blows.forEach(b => { const x = f1(cx + b[0] * Z), y = f1(fy + b[1] * Z); scene += `<g class="spark" style="animation-delay:${b[2]}s"><path d="M${x} ${y - 12} L${x + 3} ${y - 3} L${x + 12} ${y} L${x + 3} ${y + 3} L${x} ${y + 12} L${x - 3} ${y + 3} L${x - 12} ${y} L${x - 3} ${y - 3} Z" fill="#FFE7A8"/><circle cx="${x}" cy="${y}" r="3.2" fill="#FFFFFF"/></g>`; });
   const focusY = fy - 95, zs = 1.2;
   s += `<style>@keyframes ${id}cam{0%{transform:none}15%{transform:none}30%{transform:translate(${f1(W / 2 - zs * cx)}px,${f1(H * .52 - zs * focusY)}px) scale(${zs})}72%{transform:translate(${f1(W / 2 - zs * cx)}px,${f1(H * .52 - zs * focusY)}px) scale(${zs})}90%{transform:none}100%{transform:none}}</style>`;
-  s += `<g style="animation:${id}cam 8.4s ease-in-out both">${scene}</g>`;
+  s += painted('idi', MOB ? [[0, .6, .5, 1], [25, .62, .5, 1.02], [72, .68, .52, 1.3], [100, .69, .52, 1.34]] : [[0, .5, .5, 1.02], [22, .54, .5, 1.06], [70, .68, .52, 1.32], [100, .72, .5, 1.28]], 9.5);
   s += `<rect x="0" y="0" width="${W}" height="${MOB ? 92 : 66}" fill="#12060A" opacity=".86"/><rect x="0" y="${MOB ? 92 : 66}" width="${W}" height="1" fill="#A87B2A" opacity=".55"/>`;
   if (MOB) {
     s += `<text x="16" y="32" fill="#F1D99A" style="${CAP};font-size:${F(15)}px;font-weight:700;letter-spacing:.04em">Idi di marzo, 44 a.C.</text><text x="16" y="${f1(32 + F(16))}" fill="#C9B7A2" style="font-size:${F(10.5)}px">Curia di Pompeo</text>`;

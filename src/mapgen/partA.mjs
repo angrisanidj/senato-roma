@@ -25,7 +25,7 @@ const C = { ott: '#D99A12', ant: '#C8373A', rep: '#2667B0', sex: '#5E93C8', lep:
 const P = {};
 let defs = '';
 function buildMaps() {
-defs = SUF ? '' : `<g id="fg-sword"><path d="M0,-15 L2.3,4.5 L-2.3,4.5 Z" fill="#E2DFD7" stroke="#5E5A52" stroke-width=".8" stroke-linejoin="round"/><path d="M0,-11 L0,3.5" stroke="#A8A49B" stroke-width=".8"/><rect x="-5.5" y="4.5" width="11" height="2.4" rx="1" fill="#C99A3A" stroke="#6B4A1E" stroke-width=".5"/><rect x="-1.3" y="6.9" width="2.6" height="5" fill="#5A3A22"/><circle cx="0" cy="13.4" r="1.9" fill="#C99A3A" stroke="#6B4A1E" stroke-width=".5"/></g>`;
+defs = SUF ? '' : `<radialGradient id="fg-sea" cx=".5" cy=".45" r=".75"><stop offset="0" stop-color="#E4EDE9" stop-opacity=".7"/><stop offset="1" stop-color="#B8CBC6" stop-opacity=".55"/></radialGradient><linearGradient id="fg-paper" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F7EFDC"/><stop offset=".55" stop-color="#F2E7CE"/><stop offset="1" stop-color="#EADBBB"/></linearGradient><radialGradient id="fg-ptv" cx=".5" cy=".45" r=".75"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".42"/></radialGradient><radialGradient id="fg-vign" cx=".5" cy=".5" r=".72"><stop offset=".62" stop-color="#3A2614" stop-opacity="0"/><stop offset="1" stop-color="#3A2614" stop-opacity=".2"/></radialGradient><radialGradient id="fg-plate" cx=".5" cy=".38" r=".8"><stop offset="0" stop-color="#FDFAF3"/><stop offset=".7" stop-color="#F7F0E2"/><stop offset="1" stop-color="#EADDC4"/></radialGradient><g id="fg-sword"><path d="M0,-15 L2.3,4.5 L-2.3,4.5 Z" fill="#E2DFD7" stroke="#5E5A52" stroke-width=".8" stroke-linejoin="round"/><path d="M0,-11 L0,3.5" stroke="#A8A49B" stroke-width=".8"/><rect x="-5.5" y="4.5" width="11" height="2.4" rx="1" fill="#C99A3A" stroke="#6B4A1E" stroke-width=".5"/><rect x="-1.3" y="6.9" width="2.6" height="5" fill="#5A3A22"/><circle cx="0" cy="13.4" r="1.9" fill="#C99A3A" stroke="#6B4A1E" stroke-width=".5"/></g>`;
 for (const [k, m] of Object.entries(MAPS)) {
   const [x0, y0, x1, y1] = (MOB && m.bm) || m.b;
   const proj = d3.geoMercator().fitExtent([[0, 0], [W, H]], { type: 'MultiPoint', coordinates: [[x0, y0], [x1, y1], [x0, y1], [x1, y0]] });
@@ -43,7 +43,14 @@ for (const [k, m] of Object.entries(MAPS)) {
   const clipped = cand.length ? pc.intersection(box, cand) : [];
   let d = '';
   clipped.forEach(pl => pl.forEach(ring => { const pts = ring.map(ll => proj(ll)); let prev = ''; ring.length && (d += 'M' + pts.map(p => { const q = f1(p[0]) + ',' + f1(p[1]); const out = q === prev ? '' : q; prev = q; return out; }).filter(Boolean).join('L') + 'Z'); }));
-  defs += `<g id="fg-map-${k}${SUF}"><rect width="${W}" height="${H}" fill="#D6E2DE"/><path id="fg-landp-${k}${SUF}" d="${d}" fill-rule="evenodd" fill="#F3EAD4" stroke="#9C8A66" stroke-width=".8" stroke-linejoin="round"/></g><clipPath id="fg-land-${k}${SUF}"><use href="#fg-landp-${k}${SUF}" clip-rule="evenodd"/></clipPath>`;
+  const lp = `#fg-landp-${k}${SUF}`;
+  // stile da atlante antico: linee d'acqua che seguono le coste, ombra interna lungo la costa, carta calda
+  const rings = [[30, '#CBDAD6'], [24, '#D5E1DD'], [18, '#C6D7D3'], [13, '#D5E1DD'], [8, '#C2D4D0'], [4, '#D5E1DD']].map(r => `<use href="${lp}" fill="none" stroke="${r[1]}" stroke-width="${r[0]}" stroke-linejoin="round"/>`).join('');
+  defs += `<path id="fg-landp-${k}${SUF}" d="${d}" fill-rule="evenodd"/><clipPath id="fg-land-${k}${SUF}"><use href="${lp}" clip-rule="evenodd"/></clipPath>`
+    + `<g id="fg-map-${k}${SUF}"><rect width="${W}" height="${H}" fill="#D5E1DD"/><rect width="${W}" height="${H}" fill="url(#fg-sea)"/>${rings}`
+    + `<use href="${lp}" fill="url(#fg-paper)" stroke="#8E7A55" stroke-width="2.4" stroke-opacity=".18" stroke-linejoin="round"/>`
+    + `<g clip-path="url(#fg-land-${k}${SUF})"><use href="${lp}" fill="none" stroke="#B89A62" stroke-width="12" stroke-opacity=".22" stroke-linejoin="round"/><use href="${lp}" fill="none" stroke="#B89A62" stroke-width="4" stroke-opacity=".22" stroke-linejoin="round"/></g>`
+    + `<use href="${lp}" fill="none" stroke="#86724E" stroke-width=".9" stroke-linejoin="round"/></g>`;
   console.error(k + SUF, Math.round(d.length / 1024) + 'KB');
 }
 }

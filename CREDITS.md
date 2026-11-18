@@ -28,3 +28,7 @@ Tutte le immagini hanno ora autore e licenza verificati sulla pagina del file su
 ## Anteprima per i social e favicon
 
 `og-image.png`, l'immagine che compare quando il link viene condiviso su X e sugli altri social, usa il busto Chiaramonti di Cesare indicato sopra, in pubblico dominio. Il favicon è un disegno originale. Entrambi si rigenerano con `python src/social/render.py`.
+
+## Scene illustrate generate con IA
+
+Le scene animate della via Appia e del rogo della Curia (seduta 7), del Rubicone (seduta 9), della resa di Vercingetorige (seduta 5), di Cesare e Cleopatra (seduta 10), delle Idi di marzo (seduta 13), del funerale di Cesare (seduta 15) e della morte di Cleopatra (seduta 23) sono illustrazioni generate con l'intelligenza artificiale (modello GPT Image, tramite ElevenLabs, novembre 2026). I testi delle richieste seguono le fonti antiche citate nella pagina e si ispirano alla pittura di storia dell'Ottocento: Jean-Léon Gérôme (*La morte di Cesare*, *Cleopatra e Cesare*), Vincenzo Camuccini (*La morte di Cesare*), Gustave Boulanger (*Cesare al Rubicone*), Lionel Royer (*Vercingetorige getta le armi ai piedi di Cesare*), George Edward Robertson (*L'orazione di Marco Antonio*), Jean-André Rixens (*La morte di Cleopatra*). Sono ricostruzioni, non documenti d'epoca. I file si trovano in `src/assets/painted/` (JPEG in base64).
