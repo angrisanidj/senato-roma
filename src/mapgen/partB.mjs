@@ -53,7 +53,7 @@ function chartBalance() {
   let s = head('Il compromesso del 17 marzo', 'Seduta nel tempio di Tellus');
   const foot = MOB ? H - 70 : 400;
   s += `<path d="M${cx - 30} ${foot} L${cx + 30} ${foot} L${cx + 12} ${foot - 20} L${cx - 12} ${foot - 20} Z" fill="#A87B2A"/><rect x="${cx - 4}" y="${py + 4}" width="8" height="${foot - py - 22}" fill="#A87B2A"/><circle cx="${cx}" cy="${py}" r="9" fill="#D4AE55" stroke="#8C6420"/>`;
-  s += `<g class="beam" style="transform-origin:${cx}px ${py}px"><rect x="${cx - arm - 40}" y="${py - 4}" width="${2 * arm + 80}" height="8" rx="4" fill="#8C6420"/>`;
+  s += `<g class="sbeam" style="transform-origin:${cx}px ${py}px"><rect x="${cx - arm - 40}" y="${py - 4}" width="${2 * arm + 80}" height="8" rx="4" fill="#8C6420"/>`;
   const pan = (x, t1, t2, col, cls) => {
     const L = t1.split('|');
     let r = `<g class="${cls}" style="transform-origin:${x}px ${py}px"><line x1="${x}" y1="${py}" x2="${x - pw * .8}" y2="${py + 104}" stroke="#8C6420" stroke-width="1.5"/><line x1="${x}" y1="${py}" x2="${x + pw * .8}" y2="${py + 104}" stroke="#8C6420" stroke-width="1.5"/><path d="M${x - pw} ${py + 104} Q${x} ${py + 144} ${x + pw} ${py + 104} Z" fill="#D4AE55" stroke="#8C6420"/>`;
