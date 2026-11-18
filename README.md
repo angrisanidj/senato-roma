@@ -14,7 +14,8 @@ Navigazione:
 - una minimappa sopra la linea del tempo mostra la composizione dell'aula in tutte le 25 sedute e si trascina per scorrere;
 - quando i comandi escono dallo schermo compare una barra fluttuante con seduta precedente, riproduzione e seduta successiva;
 - le frecce ← → sfogliano le sedute; ogni seduta ha un indirizzo diretto (`#seduta-13`), usato anche dai pulsanti di condivisione;
-- aperta da sola (non incorporata), la pagina ha un'apertura a tutto schermo e, sopra i 1100 px, l'aula e le fazioni affiancate.
+- aperta da sola (non incorporata), la pagina ha un'apertura a tutto schermo e, sopra i 1100 px, l'aula e le fazioni affiancate;
+- in fondo, «Il quadro d'insieme» riassume in un grafico ad aree la composizione dell'aula in tutte le sedute, con tabella dei dati.
 
 La pagina pubblicata è **`index.html`**: è un unico file autonomo, con immagini e illustrazioni incorporate. Accanto ci sono il favicon e l'immagine di anteprima per i social, richiamati dai meta tag Open Graph e X. Si può aprire direttamente nel browser o pubblicare con GitHub Pages.
 
