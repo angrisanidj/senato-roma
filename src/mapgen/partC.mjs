@@ -634,6 +634,10 @@ buildMaps(); const D = { defs, viz: buildViz() };
 W = 440; H = 520; FS = 1.3; MOB = true; SUF = '-m';
 console.error('--- mobile');
 buildMaps(); const Mo = { defs, viz: buildViz() };
-const OUT = { defs: D.defs + Mo.defs, viz: D.viz, vizm: Mo.viz };
+const fixActs = L => L.map(v => ({ ...v, svg: v.svg.replace(/class="act( last)?" style="animation-delay:(-?[\d.]+)s(?:;animation-duration:([\d.]+)s)?"/g, (m, last, d, t) => {
+  const D = +d, a = `fgV4in .32s ease-out ${D}s both`;
+  return `class="act${last || ''}" style="animation:${last || !t ? a : a + `, fgV4off .01s step-end ${(D + +t).toFixed(2)}s both`}"`;
+}) }));
+const OUT = { defs: D.defs + Mo.defs, viz: fixActs(D.viz), vizm: fixActs(Mo.viz) };
 fs.writeFileSync('viz.json', JSON.stringify(OUT));
 console.error('total', Math.round(JSON.stringify(OUT).length / 1024) + 'KB');
