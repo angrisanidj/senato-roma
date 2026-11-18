@@ -13,23 +13,23 @@ TMP = pathlib.Path(tempfile.mkdtemp())
 def shot(html, out, w, h):
     f = TMP / (out.stem + '.html'); f.write_text(html, encoding='utf-8')
     subprocess.run([BROWSER, '--headless=new', '--disable-gpu', '--hide-scrollbars', '--force-device-scale-factor=1',
-        '--virtual-time-budget=4000', f'--user-data-dir={TMP / "prof"}', f'--screenshot={out}',
+        '--virtual-time-budget=6000', f'--user-data-dir={TMP / "prof"}', f'--screenshot={out}',
         f'--window-size={w},{h}', f.as_uri()], check=True, capture_output=True)
 
-# Emiciclo dell'anteprima: senatori colorati per fazione, come nell'aula della pagina
-COL = ['#23845D'] * 10 + ['#2F7FB8'] * 6 + ['#D4AE55'] * 4 + ['#E0663A'] * 7
-dots, k = [], 0
-rows = [(46, 6), (66, 9), (86, 12)]
-pts = []
-for rad, n in rows:
-    for i in range(n):
-        a = math.pi + math.pi * i / (n - 1)
-        pts.append((a, 110 + rad * math.cos(a), 92 + rad * math.sin(a)))
-pts.sort()
-for (a, x, y), c in zip(pts, COL):
-    dots.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="5.4" fill="{c}" stroke="#2A080D" stroke-width="1"/>')
-caes = 'data:image/jpeg;base64,' + (ROOT / 'src/assets/caes.b64').read_text().strip()
-og = (HERE / 'og.html').read_text(encoding='utf-8').replace('{{CAES}}', caes).replace('{{HEMI}}', ''.join(dots))
+# Striscia in basso: la composizione dell'aula in ognuna delle 25 sedute, dai dati di index.html
+import re
+page = (ROOT / 'index.html').read_text(encoding='utf-8')
+gruppi = {m.group(1): (m.group(2), bool(m.group(3))) for m in re.finditer(r'(\w+):\{n:"[^"]*",c:"(#[0-9A-Fa-f]{6})"(,h:1)?', page[page.index('groups:{'):page.index('eras:[')])}
+strip = []
+for m in re.finditer(r'g:\[(\[.*?\])\],txt:', page):
+    col = ''
+    for gid, n in re.findall(r'\["?(\w+)"?,\s*(\d+)\]', m.group(1)):
+        c, assente = gruppi[gid]
+        if not assente: col += f'<i style="flex:{n} 1 0px;background:{c}"></i>'
+    strip.append(f'<div>{col}</div>')
+assert len(strip) == 25, len(strip)
+aug = 'data:image/jpeg;base64,' + (ROOT / 'src/assets/aug.b64').read_text().strip()
+og = (HERE / 'og.html').read_text(encoding='utf-8').replace('{{AUG}}', aug).replace('{{STRIP}}', ''.join(strip))
 shot(og, ROOT / 'og-image.png', 1200, 630)
 
 # Favicon: SVG per i browser moderni, PNG per iOS/Android e ICO (PNG incorporati) per i vecchi

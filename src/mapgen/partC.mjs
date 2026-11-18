@@ -122,9 +122,9 @@ function placeLabels(S) {
     if (bestN > 0) console.error('  ~ label con', bestN, 'contatti:', L.t);
     placed.push(best[1]);
     if (L.type === 'pt') { const [px, py] = L.at, b = best[1], qx = Math.min(Math.max(px, b[0]), b[2]), qy = Math.min(Math.max(py, b[1]), b[3]), dd = Math.hypot(qx - px, qy - py); if (dd > L.rad + 9) out.push(`<line class="pop" x1="${f1(px + (qx - px) / dd * L.rad)}" y1="${f1(py + (qy - py) / dd * L.rad)}" x2="${f1(qx)}" y2="${f1(qy)}" stroke="${L.col}" stroke-width="1" stroke-opacity=".7" style="animation-delay:${L.d}s"/>`); }
-    out.push(emitLabel(L, best[0]));
+    out.push({ svg: emitLabel(L, best[0]), b: best[1] });
   }
-  return out.join('');
+  return out;
 }
 function emitLabel(L, c) {
   const [x, y, anchor] = c, fs = f1(L.size * FS), lh = L.size * FS * 1.18, lines = L.t.split('|');
@@ -139,10 +139,35 @@ function emitLabel(L, c) {
 }
 let CAMN = 0;
 function render(S) {
-  const labels = placeLabels(S);
+  const items = placeLabels(S);
+  const T = S.cam ? S.cam[S.cam.length - 1][0] : 0, name = 'fgcam' + (CAMN++) + (MOB ? 'm' : 'd');
+  // Con la camera le etichette non ingrandiscono quanto la mappa (crescono come s^0.45)
+  // e, se sono in vista, vengono tenute dentro l'inquadratura.
+  const cams = S.cam ? S.cam.map(c => {
+    if (c[1] == null) return { pct: f1(c[0] / T * 100), s: 1, tx: 0, ty: 0 };
+    const s = c[3], p = pt(S.m, [c[1], c[2]]), x = Math.min(Math.max(p[0], W / (2 * s)), W - W / (2 * s)), y = Math.min(Math.max(p[1], H / (2 * s)), H - H / (2 * s));
+    return { pct: f1(c[0] / T * 100), s, tx: W / 2 - s * x, ty: H / 2 - s * y };
+  }) : null;
+  const bot = H - (MOB ? 62 : 48);
+  const labels = items.map((it, li) => {
+    if (typeof it === 'string') return it;
+    if (!cams || !cams.some(c => c.s !== 1)) return it.svg;
+    const [x0, y0, x1, y1] = it.b, cx = (x0 + x1) / 2, cy = (y0 + y1) / 2, ln = name + 'l' + li;
+    const kf = cams.map(c => {
+      if (c.s === 1) return `${c.pct}%{transform:none;opacity:1}`;
+      const v = Math.pow(c.s, .45), k = v / c.s, sx = c.tx + c.s * cx, sy = c.ty + c.s * cy, hw = v * (x1 - x0) / 2, hh = v * (y1 - y0) / 2;
+      let dx = 0, dy = 0, op = 1;
+      if (sx < 0 || sx > W || sy < 0 || sy > bot) op = 0;
+      else {
+        if (2 * hw > W - 12) dx = W / 2 - sx; else if (sx - hw < 6) dx = 6 - (sx - hw); else if (sx + hw > W - 6) dx = W - 6 - (sx + hw);
+        if (sy - hh < 6) dy = 6 - (sy - hh); else if (sy + hh > bot) dy = bot - (sy + hh);
+      }
+      return `${c.pct}%{transform:translate(${f1(dx / c.s)}px,${f1(dy / c.s)}px) scale(${Math.round(k * 1000) / 1000});opacity:${op}}`;
+    }).join('');
+    return `<style>@keyframes ${ln}{${kf}}</style><g style="transform-origin:${f1(cx)}px ${f1(cy)}px;animation:${ln} ${T}s ease-in-out both">${it.svg}</g>`;
+  }).join('');
   let inner = `<use href="#fg-map-${S.m}${SUF}"/>` + S.under + S.lines + S.marks + labels;
   if (S.cam) {
-    const T = S.cam[S.cam.length - 1][0], name = 'fgcam' + (CAMN++) + (MOB ? 'm' : 'd');
     const kf = S.cam.map(c => {
       const pct = f1(c[0] / T * 100);
       if (c[1] == null) return `${pct}%{transform:translate(0px,0px) scale(1)}`;
