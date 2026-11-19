@@ -17,7 +17,7 @@ Navigazione:
 - aperta da sola (non incorporata), la pagina ha un'apertura a tutto schermo e, sopra i 1100 px, l'aula e le fazioni affiancate;
 - in fondo, «Il quadro d'insieme» riassume in un grafico ad aree la composizione dell'aula in tutte le sedute, con tabella dei dati.
 
-La pagina pubblicata è **`index.html`**: è un unico file autonomo, con immagini e illustrazioni incorporate. Accanto ci sono il favicon e l'immagine di anteprima per i social, richiamati dai meta tag Open Graph e X. Si può aprire direttamente nel browser o pubblicare con GitHub Pages.
+La pagina pubblicata è **`index.html`**, con ritratti, mappe e grafici incorporati. Le nove scene illustrate stanno in `img/scene/` e si scaricano solo quando servono (con la seduta successiva in anticipo); se la pagina è incorporata altrove le prende da GitHub Pages. Accanto ci sono il favicon e l'immagine di anteprima per i social, richiamati dai meta tag Open Graph e X. Si può aprire direttamente nel browser o pubblicare con GitHub Pages.
 
 ## Struttura del repository
 
