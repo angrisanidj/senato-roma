@@ -1503,10 +1503,13 @@ function init3D(){
     x.fillStyle='#fbe7a6';for(var k=0;k<60;k++){var a=k/60*6.2832;x.beginPath();x.arc(w/2+Math.cos(a)*w*.485,h/2+Math.sin(a)*h*.485,w*.008,0,6.3);x.fill()}
     for(var k2=0;k2<40;k2++){var a2=k2/40*6.2832,xx=w/2+Math.cos(a2)*w*.425,yy=h/2+Math.sin(a2)*h*.425;x.save();x.translate(xx,yy);x.rotate(a2+1.05);x.fillStyle='#a8843a';x.strokeStyle='#6b4a1e';x.lineWidth=1.5;x.beginPath();x.ellipse(0,0,w*.024,w*.011,0,0,6.3);x.fill();x.stroke();x.restore()}
     x.strokeStyle='#6b4a1e';x.lineWidth=3;x.beginPath();x.arc(w/2,h/2,w*.38,0,6.3);x.stroke();
-    x.textAlign='center';x.textBaseline='middle';x.font='700 '+Math.round(w*.052)+'px Cinzel, Georgia, serif';
-    ['SENATVS','POPVLVSQVE ROMANVS','IMP CAESARI DIVI F','AVGVSTO COS VIII','DEDIT CLVPEVM','VIRTVTIS CLEMENTIAE','IVSTITIAE PIETATIS','ERGA DEOS PATRIAMQVE'].forEach(function(l,i){var yy=h/2+(i-3.5)*h*.074;x.fillStyle='rgba(255,241,192,.6)';x.fillText(l,w/2,yy+2);x.fillStyle='#43290a';x.fillText(l,w/2,yy)})}
+    /* iscrizione disposta come sulla copia in marmo di Arles: righe adattate alla corda del cerchio, punti tra le parole, lettere incise */
+    x.textAlign='center';x.textBaseline='middle';var LN=['SENATVS','POPVLVSQVE · ROMANVS','IMP · CAESARI · DIVI · F','AVGVSTO · COS · VIII','DEDIT · CLVPEVM','VIRTVTIS · CLEMENTIAE','IVSTITIAE · PIETATIS','ERGA · DEOS','PATRIAMQVE'],R0=w*.368,LH=h*.0655,fs=w*.06,FF='px Cinzel, Georgia, serif';
+    /* un solo corpo per tutte le righe: il più grande che entra nella corda del cerchio a ogni altezza */
+    x.font='700 100'+FF;LN.forEach(function(l,i){var dy=Math.abs((i-(LN.length-1)/2)*LH)+fs*.4,ch=2*Math.sqrt(Math.max(1,R0*R0-dy*dy))*.95;fs=Math.min(fs,ch/x.measureText(l).width*100)});
+    x.font='700 '+fs.toFixed(1)+FF;LN.forEach(function(l,i){var yy=h/2+(i-(LN.length-1)/2)*LH;x.fillStyle='rgba(255,244,200,.75)';x.fillText(l,w/2+1.5,yy+2.5);x.fillStyle='rgba(60,36,8,.35)';x.fillText(l,w/2-1,yy-1.5);x.fillStyle='#3a2208';x.fillText(l,w/2,yy)})}
   var clipTex=tex(1024,1024,clipDraw);clipTex.center.set(.5,.5);clipTex.rotation=PI/2;if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){clipDraw(clipTex._c.getContext('2d'),1024,1024);clipTex.needsUpdate=true});
-  var clipeus=new T.Mesh(new T.CylinderGeometry(1.75,1.75,.14,72),[M.gold,std({map:clipTex,metalness:.5,roughness:.32,envMapIntensity:.9}),M.gold]);clipeus.rotation.x=PI/2;clipeus.position.set(4.2,3.5,.42);clipeus.visible=false;clipeus.castShadow=true;gXp.add(clipeus);
+  var clipeus=new T.Mesh(new T.CylinderGeometry(1.75,1.75,.14,72),[M.gold,std({map:clipTex,metalness:.5,roughness:.32,envMapIntensity:.9}),M.gold]);clipeus.rotation.x=PI/2;clipeus.position.set(4.2,3.5,.42);clipeus.visible=false;clipeus.castShadow=true;gXp.add(clipeus);[[1.75,.075,.05],[1.34,.022,.075]].forEach(function(r){var rim=new T.Mesh(new T.TorusGeometry(r[0],r[1],12,96),M.gold);rim.rotation.x=PI/2;rim.position.y=r[2];clipeus.add(rim)});
   var clipSpot=new T.SpotLight('#fff2d0',0,14,.32,.5,1.2);clipSpot.position.set(8.5,8.5,4.2);clipSpot.target.position.set(13.08,3.5,4.2);scene.add(clipSpot);scene.add(clipSpot.target);
 
   var ceil=new T.Mesh(new T.PlaneGeometry(27,18),std({map:cofferTex,roughness:.85}));ceil.rotation.x=PI/2;ceil.position.y=19.9;scene.add(ceil);
@@ -1530,15 +1533,21 @@ function init3D(){
   var glob=new T.Mesh(new T.SphereGeometry(.42,28,20),M.gold);glob.position.y=.42;glob.castShadow=true;vic.add(glob);
   [0,PI/2].forEach(function(r){var t=new T.Mesh(new T.TorusGeometry(.425,.012,6,40),gdark);t.position.y=.42;t.rotation.x=PI/2;t.rotation.y=r;if(r)t.rotation.set(0,0,0);vic.add(t)});
   var eq=new T.Mesh(new T.TorusGeometry(.425,.012,6,40),gdark);eq.position.y=.42;eq.rotation.x=PI/2;vic.add(eq);
-  var skirt=new T.Mesh(new T.LatheGeometry(V2([[0,0],[.36,0],[.38,.05],[.32,.25],[.25,.55],[.22,.8],[.24,.95],[.2,1.08],[.14,1.2],[.155,1.3],[.19,1.4],[.2,1.5],[.17,1.58],[.1,1.63],[.05,1.66],[0,1.67]]),28),M.gold);skirt.position.set(0,.8,0);skirt.rotation.x=.05;skirt.castShadow=true;vic.add(skirt);
-  for(var fi=0;fi<9;fi++){var fa=fi/9*PI*2,fold=new T.Mesh(new T.CylinderGeometry(.018,.03,.95,6),gm2);fold.position.set(Math.cos(fa)*.25,1.25,Math.sin(fa)*.25);fold.rotation.z=Math.cos(fa)*.06;fold.rotation.x=-Math.sin(fa)*.06;vic.add(fold)}
+  var skirt=new T.Mesh(new T.LatheGeometry(V2([[0,0],[.27,0],[.295,.03],[.285,.14],[.255,.42],[.225,.72],[.2,.95],[.215,1.1],[.2,1.2],[.165,1.3],[.175,1.4],[.2,1.5],[.21,1.57],[.17,1.63],[.08,1.67],[0,1.68]]),36),M.gold);skirt.position.set(0,.8,0);skirt.scale.set(1.08,1,.74);skirt.rotation.x=.04;skirt.castShadow=true;vic.add(skirt);
+  /* pieghe della veste, più fitte e leggermente mosse dal vento */
+  for(var fi=0;fi<14;fi++){var fa=fi/14*PI*2,fr0=.235+(fi%2)*.012,fold=new T.Mesh(new T.CylinderGeometry(.012,.034,1.0+(fi%3)*.05,6),gm2);fold.position.set(Math.cos(fa)*fr0*1.08,1.3,Math.sin(fa)*fr0*.74-.02);fold.rotation.z=Math.cos(fa)*.09;fold.rotation.x=-Math.sin(fa)*.09-.03;vic.add(fold)}
+  /* sopravveste fino ai fianchi e cintura alta */
+  var over=new T.Mesh(new T.LatheGeometry(V2([[.235,0],[.225,.05],[.2,.2],[.19,.3]]),36),gm2);over.position.set(0,1.84,0);over.scale.set(1.08,1,.76);vic.add(over);
+  var belt=new T.Mesh(new T.TorusGeometry(.178,.014,6,36),gdark);belt.position.set(0,2.13,0);belt.rotation.x=PI/2;belt.scale.set(1.08,.76,1);vic.add(belt);
+  [-1,1].forEach(function(sd){var sh=new T.Mesh(new T.SphereGeometry(.075,14,10),M.gold);sh.position.set(sd*.2,2.37,0);sh.castShadow=true;vic.add(sh);
+    var ft=new T.Mesh(new T.SphereGeometry(.05,10,8),M.gold);ft.scale.set(.8,.5,1.7);ft.position.set(sd*.09,.84,.2);vic.add(ft)});
   var fl=new T.Shape();fl.moveTo(0,0);fl.bezierCurveTo(-.15,.25,-.05,.55,-.35,.8);fl.bezierCurveTo(-.2,.55,-.45,.35,-.3,.05);fl.lineTo(0,0);
   var flm=new T.Mesh(new T.ShapeGeometry(fl,12),gm2);flm.position.set(.05,1.0,-.22);flm.rotation.y=PI/2;flm.scale.set(1.2,1.1,1);vic.add(flm);
   limb([0,2.44,0],[0,2.58,0],.05,.045);
-  var vh=new T.Mesh(new T.SphereGeometry(.125,18,14),M.gold);vh.position.set(0,2.7,.04);vh.scale.set(1,1.08,1.05);vic.add(vh);
-  var bun=new T.Mesh(new T.SphereGeometry(.075,12,10),M.gold);bun.position.set(0,2.74,-.12);vic.add(bun);
+  var vh=new T.Mesh(new T.SphereGeometry(.118,22,16),M.gold);vh.position.set(0,2.7,.04);vh.scale.set(.92,1.12,1);vh.castShadow=true;vic.add(vh);var hair=new T.Mesh(new T.SphereGeometry(.128,20,14,0,PI*2,0,PI*.62),gdark);hair.position.set(0,2.715,.015);hair.scale.set(.96,1.08,1.04);hair.rotation.x=-.5;vic.add(hair);var nose=new T.Mesh(new T.ConeGeometry(.018,.05,6),M.gold);nose.position.set(0,2.69,.158);nose.rotation.x=PI/2-.25;vic.add(nose);
+  var bun=new T.Mesh(new T.SphereGeometry(.07,12,10),gdark);bun.position.set(0,2.74,-.12);vic.add(bun);
   var dia=new T.Mesh(new T.TorusGeometry(.12,.012,6,24),gdark);dia.position.set(0,2.76,0);dia.rotation.x=PI/2-.25;vic.add(dia);
-  limb([.19,2.36,0],[.34,2.62,.2],.05,.042);limb([.34,2.62,.2],[.44,2.95,.34],.042,.034);limb([.06,1.72,.02],[.08,1.32,.13],.1,.09,gm2);
+  limb([.19,2.36,0],[.34,2.62,.2],.05,.042);limb([.34,2.62,.2],[.44,2.95,.34],.042,.034);[[.44,2.97,.35],[-.3,1.78,.22]].forEach(function(p){var hd=new T.Mesh(new T.SphereGeometry(.045,10,8),M.gold);hd.position.set(p[0],p[1],p[2]);vic.add(hd)});
   var lau=std({color:'#5E8A3C',roughness:.55}),lau2=std({color:'#7AA24E',roughness:.55});
   var wr=new T.Group();wr.position.set(.46,3.12,.38);wr.rotation.x=.2;wr.rotation.y=-.3;vic.add(wr);
   wr.add(new T.Mesh(new T.TorusGeometry(.16,.018,6,24),std({color:'#4A6B2E'})));
@@ -1548,11 +1557,16 @@ function init3D(){
   var pf=new T.Shape();pf.moveTo(0,0);pf.quadraticCurveTo(.05,.12,0,.3);pf.quadraticCurveTo(-.04,.12,0,0);var pfg=new T.ShapeGeometry(pf,6),pm=std({color:'#6E8F3A',roughness:.6,side:T.DoubleSide});
   for(var pi_=0;pi_<14;pi_++){var tt=.35+pi_*.045,sdp=pi_%2?1:-1,fr=new T.Mesh(pfg,pm);fr.position.set(-.3-.06*tt,1.75+1.25*tt,.22-.27*tt);fr.rotation.set(0,PI/2,sdp*(.9+pi_*.02));vic.add(fr)}
   function feather(L,w){var f=new T.Shape();f.moveTo(0,0);f.bezierCurveTo(w,L*.2,w*.8,L*.78,0,L);f.bezierCurveTo(-w*.8,L*.78,-w,L*.2,0,0);return new T.ShapeGeometry(f,8)}
-  var fP=feather(1.25,.14),fS=feather(.8,.13),fC=feather(.45,.12);
-  [1,-1].forEach(function(sd){var wg=new T.Group();wg.position.set(sd*.1,2.3,-.14);wg.scale.x=sd;wg.rotation.y=sd*-.55;vic.add(wg);
-    for(var k2=0;k2<9;k2++){var a=-1.35+k2*.14,m=new T.Mesh(fP,gm2);m.rotation.z=a;m.position.set(.18+k2*.02,.1+k2*.07,-k2*.004);m.scale.setScalar(.85+k2*.05);m.castShadow=true;wg.add(m)}
-    for(k2=0;k2<8;k2++){var a2=-1.25+k2*.15,m2=new T.Mesh(fS,M.gold);m2.material=gm2;m2.rotation.z=a2;m2.position.set(.12+k2*.015,.12+k2*.05,.01);wg.add(m2)}
-    for(k2=0;k2<7;k2++){var a3=-1.1+k2*.16,m3=new T.Mesh(fC,gm2);m3.rotation.z=a3;m3.position.set(.06,.16+k2*.035,.02);wg.add(m3)}
+  var fP=feather(1.25,.21),fS=feather(.8,.2),fC=feather(.42,.17);
+  [1,-1].forEach(function(sd){var wg=new T.Group();wg.position.set(sd*.07,2.18,-.15);wg.scale.x=sd;wg.rotation.y=sd*-.5;wg.rotation.x=-.1;vic.add(wg);
+    function arc(t){return new V(.05+.5*t,.06+1.22*t-.3*t*t,0)}
+    function put(geo,t,ang,sc,z){var p=arc(t),m=new T.Mesh(geo,gm2);m.position.set(p.x,p.y,z);m.rotation.z=-ang;m.scale.setScalar(sc);m.castShadow=true;wg.add(m)}
+    var k2,t;
+    for(k2=0;k2<12;k2++){t=k2/11;put(fP,t,(178-132*t)*PI/180,.55+.45*t,-.004*k2)}
+    for(k2=0;k2<11;k2++){t=k2/10;put(fS,t*.96,(174-124*t)*PI/180,.66+.34*t,.014)}
+    for(k2=0;k2<12;k2++){t=k2/11;put(fC,t*.98,(166-112*t)*PI/180,.8+.25*t,.028)}
+    var pts=[];for(k2=0;k2<=8;k2++)pts.push(arc(k2/8));
+    var bone=new T.Mesh(new T.TubeGeometry(new T.CatmullRomCurve3(pts),20,.034,8,false),M.gold);bone.position.z=.03;bone.castShadow=true;wg.add(bone);
   });
 
   scene.add(new T.HemisphereLight('#fff1d8','#5a4633',.9));
@@ -1566,7 +1580,7 @@ function init3D(){
     m.position.copy(o).addScaledVector(dir,L/2);m.quaternion.setFromUnitVectors(new V(0,1,0),dir.clone().negate());scene.add(m)});
   var dN=520,dp=new Float32Array(dN*3),dr=rnd(99);for(var di=0;di<dN;di++){dp[di*3]=-13+dr()*21;dp[di*3+1]=.5+dr()*16;dp[di*3+2]=-8+dr()*16}
   var dg=new T.BufferGeometry();dg.setAttribute('position',new T.BufferAttribute(dp,3));
-  var dust=new T.Points(dg,new T.PointsMaterial({color:'#ffe6bd',size:.055,transparent:true,opacity:.55,blending:T.AdditiveBlending,depthWrite:false}));scene.add(dust);
+  var dustTex=tex(32,32,function(x){var g=x.createRadialGradient(16,16,0,16,16,16);g.addColorStop(0,'rgba(255,255,255,1)');g.addColorStop(.4,'rgba(255,255,255,.45)');g.addColorStop(1,'rgba(255,255,255,0)');x.fillStyle=g;x.fillRect(0,0,32,32)});var dust=new T.Points(dg,new T.PointsMaterial({color:'#ffe6bd',map:dustTex,size:.085,transparent:true,opacity:.5,blending:T.AdditiveBlending,depthWrite:false}));scene.add(dust);
 
   var torsoG=new T.LatheGeometry(V2([[0,0],[.25,0],[.28,.1],[.27,.34],[.24,.52],[.18,.63],[.1,.69],[0,.71]]),18);torsoG.scale(1.32,1.32,1.32);
   var lapG=new T.LatheGeometry(V2([[0,-.02],[.2,-.02],[.21,.06],[.18,.16],[0,.17]]),16);lapG.scale(1.32,1.32,1.32);lapG.translate(0,0,.2);
