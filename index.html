@@ -629,6 +629,52 @@ html.fg-js #fg-senato-44 .fg-rv.fg-in{opacity:1;transform:none}
 @media (max-width:600px){#fg-senato-44 .fg-recap-s{font-size:16.5px}#fg-senato-44 .fg-recap-tip{width:210px;font-size:12px}}
 @media (prefers-reduced-motion:reduce){#fg-senato-44 .fg-hero .fg-kick,#fg-senato-44 .fg-hero .fg-h1,#fg-senato-44 .fg-hero .fg-sub,#fg-senato-44 .fg-hero .fg-facts li,#fg-senato-44 .fg-hero .fg-cta{animation:none}}
 
+/* ===== v7: rifiniture dell'interfaccia ===== */
+#fg-senato-44 ::selection{background:#F1D99A;color:#2B2420}
+html.fg-sa{scrollbar-color:#C9B48A #F5F1E8}
+#fg-senato-44 a,#fg-senato-44 button,#fg-senato-44 summary{-webkit-tap-highlight-color:transparent}
+#fg-senato-44 .fg-cred{transition:border-color .2s,box-shadow .2s}
+#fg-senato-44 .fg-cred:hover,#fg-senato-44 .fg-cred[open]{border-color:#C9B48A;box-shadow:var(--lift)}
+#fg-senato-44 .fg-stat{border-radius:8px;transition:transform .25s,box-shadow .25s}
+#fg-senato-44 .fg-fdesc{border-radius:0 8px 8px 0}
+#fg-senato-44 .fg-head,#fg-senato-44 .fg-story,#fg-senato-44 .fg-recap,#fg-senato-44 .fg-notes{scroll-margin-top:70px}
+/* metodo e fonti */
+#fg-senato-44 .fg-notes{margin:56px 0 0;padding-top:34px;border-top:1px solid var(--line)}
+#fg-senato-44 .fg-notes-g{display:grid;gap:14px;margin:4px 0 14px}
+#fg-senato-44 .fg-note{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 20px 16px;position:relative}
+#fg-senato-44 .fg-note::before{content:"";position:absolute;left:20px;top:-1px;width:44px;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold2))}
+#fg-senato-44 .fg-note h3{margin:0 0 8px;font-family:var(--cap);font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--porph)}
+#fg-senato-44 .fg-note p{margin:0;font-family:var(--serif);font-size:16.5px;line-height:1.58;color:var(--ink)}
+#fg-senato-44 .fg-notes .fg-cred p{margin:0 0 8px;font-size:13px;line-height:1.6;color:var(--muted)}
+#fg-senato-44 .fg-notes .fg-cred b{color:var(--ink);font-weight:600}
+@media (min-width:900px){#fg-senato-44 .fg-notes-g{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:18px;align-items:start}}
+@media (max-width:600px){#fg-senato-44 .fg-note{padding:15px 15px 13px}#fg-senato-44 .fg-note p{font-size:15.5px}#fg-senato-44 .fg-notes{margin-top:40px;padding-top:26px}}
+/* colophon */
+#fg-senato-44 .fg-colo{margin:44px -20px -28px;padding:0;background:#22070B;background-image:radial-gradient(90% 160% at 10% 0%,#6E1A26 0%,#3F0E15 45%,#1E060A 100%);color:#E8D6C2;position:relative}
+#fg-senato-44 .fg-colo::before{content:"";display:block;height:3px;background:linear-gradient(90deg,#8C6420,#D4AE55 35%,#F1D99A 50%,#D4AE55 65%,#8C6420)}
+#fg-senato-44 .fg-colo-in{display:grid;gap:22px;padding:30px 20px 34px;max-width:var(--W,none);margin:0 auto;box-sizing:border-box}
+#fg-senato-44 .fg-colo-b{display:flex;align-items:center;gap:14px}
+#fg-senato-44 .fg-colo-m{flex:none;font-family:var(--cap);font-size:11px;font-weight:700;letter-spacing:.12em;color:#F1D99A;border:1px solid rgba(212,174,85,.7);padding:9px 8px 8px;border-radius:3px;box-shadow:inset 0 0 0 2px #22070B,inset 0 0 0 3px rgba(212,174,85,.35);white-space:nowrap}
+#fg-senato-44 .fg-colo-b strong{display:block;font-family:var(--cap);font-size:17px;font-weight:700;letter-spacing:.03em;color:#F6E4B0;line-height:1.25}
+#fg-senato-44 .fg-colo-b div span{display:block;font-size:12.5px;color:#C8B49A;margin-top:3px;line-height:1.4}
+#fg-senato-44 .fg-colo-s{margin:0;font-size:12.5px;line-height:1.6;color:#C8B49A;max-width:62ch}
+#fg-senato-44 .fg-colo-s b{display:block;font-family:var(--cap);font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#D4AE55;margin-bottom:4px}
+#fg-senato-44 .fg-colo-l{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}
+#fg-senato-44 .fg-colo-l a{color:#F1D99A;font-size:13px;text-decoration:underline;text-decoration-color:rgba(241,217,154,.45);text-underline-offset:3px;padding:8px 0}
+#fg-senato-44 .fg-colo-l a:hover{text-decoration-color:#F1D99A}
+#fg-senato-44 #fg-totop{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 16px 0 12px;border-radius:999px;border:1px solid rgba(212,174,85,.55);background:rgba(255,255,255,.04);color:#F1D99A;font-family:var(--cap);font-size:11.5px;font-weight:700;letter-spacing:.1em;cursor:pointer;transition:background .2s,border-color .2s}
+#fg-senato-44 #fg-totop:hover{background:rgba(212,174,85,.16);border-color:#F1D99A}
+#fg-senato-44 #fg-totop svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+#fg-senato-44 .fg-colo a:focus-visible,#fg-senato-44 #fg-totop:focus-visible{outline:2px solid #F1D99A;outline-offset:3px;border-radius:4px}
+@media (max-width:600px){#fg-senato-44 .fg-colo{margin:36px -14px -24px}#fg-senato-44 .fg-colo-in{padding:26px 16px 30px}}
+html.fg-sa #fg-senato-44 .fg-colo{margin:56px calc(50% - 50vw) -40px}
+html.fg-sa #fg-senato-44 .fg-colo-in{padding-left:max(20px,calc(50vw - var(--W)/2));padding-right:max(20px,calc(50vw - var(--W)/2));max-width:none}
+@media (min-width:980px){html.fg-sa #fg-senato-44 .fg-colo{margin-bottom:-48px}
+html.fg-sa #fg-senato-44 .fg-colo-in{grid-template-columns:minmax(0,1.1fr) minmax(0,1.3fr) auto;align-items:center;column-gap:44px;padding-top:38px;padding-bottom:96px}
+html.fg-sa #fg-senato-44 .fg-colo-l{flex-direction:column;align-items:flex-end;gap:6px}}
+@media (max-width:600px){html.fg-sa #fg-senato-44 .fg-colo{margin:40px calc(50% - 50vw) -24px}html.fg-sa #fg-senato-44 .fg-colo-in{padding:26px 16px 30px}}
+@media print{#fg-senato-44 #fg-totop{display:none}}
+
 /* ===== movimento ridotto ===== */
 @media (prefers-reduced-motion:reduce){#fg-senato-44 .fg-h1{animation:none;background-position:-150% 0,0 0}#fg-senato-44 .fg-hero-art .fg-aug{animation:none}#fg-senato-44 .fg-card.on,#fg-senato-44 .fg-card.on::before,#fg-senato-44 .fg-card.on::after{animation:none}#fg-senato-44 .fg-cue::after{animation:none;opacity:1}}
 </style>
@@ -934,9 +980,13 @@ var watch=$('fg-watch');if(watch)watch.addEventListener('click',function(){toMai
   <details class="fg-cred fg-recap-data"><summary>I dati in tabella</summary><div class="fg-recap-tw"><table id="fg-recap-table"></table></div></details>
 </section>
 
-<div class="fg-foot">
-  <p><b>Nota di metodo.</b> Il Senato romano non aveva gruppi formali e votava per discessio, spostandosi fisicamente nell'aula, senza registro nominale. Le ripartizioni sono stime ragionate costruite sulle fonti antiche; per ogni seduta l'etichetta indica se i numeri sono attestati, in parte attestati o stimati.</p>
-  <p><b>Ambientazione.</b> La scena è la Curia Iulia, avviata da Cesare e inaugurata da Ottaviano nel 29 a.C.; pianta e pavimento in opus sectile seguono l'edificio ricostruito da Diocleziano. È una scelta illustrativa: prima del 29 a.C. il Senato si riuniva nella Curia Ostilia (bruciata nel 52) e in altri edifici, e Cesare fu ucciso nella Curia di Pompeo. Pavimento, gradini e pareti seguono l'edificio visibile oggi, rifatto da Diocleziano dopo l'incendio del III secolo d.C.: opus sectile di porfido e serpentino su fondo di giallo antico, tre gradini di pavonazzetto con le sedie dei senatori, pareti di marmo grigio con pannelli di porfido. La decorazione originale di età augustea non è nota. Il portone di bronzo a riquadri riprende quello originale, databile all'età di Domiziano e trasferito nel 1660 a San Giovanni in Laterano, dove si trova ancora; alla Curia oggi c'è una copia.</p>
+<section class="fg-notes" aria-labelledby="fg-notes-t">
+  <div class="fg-recap-k">Come è costruita</div>
+  <h2 class="fg-recap-t" id="fg-notes-t">Metodo e fonti</h2>
+  <div class="fg-notes-g">
+    <div class="fg-note"><h3>Nota di metodo</h3><p>Il Senato romano non aveva gruppi formali e votava per discessio, spostandosi fisicamente nell'aula, senza registro nominale. Le ripartizioni sono stime ragionate costruite sulle fonti antiche; per ogni seduta l'etichetta indica se i numeri sono attestati, in parte attestati o stimati.</p></div>
+    <div class="fg-note"><h3>Ambientazione</h3><p>La scena è la Curia Iulia, avviata da Cesare e inaugurata da Ottaviano nel 29 a.C.; pianta e pavimento in opus sectile seguono l'edificio ricostruito da Diocleziano. È una scelta illustrativa: prima del 29 a.C. il Senato si riuniva nella Curia Ostilia (bruciata nel 52) e in altri edifici, e Cesare fu ucciso nella Curia di Pompeo. Pavimento, gradini e pareti seguono l'edificio visibile oggi, rifatto da Diocleziano dopo l'incendio del III secolo d.C.: opus sectile di porfido e serpentino su fondo di giallo antico, tre gradini di pavonazzetto con le sedie dei senatori, pareti di marmo grigio con pannelli di porfido. La decorazione originale di età augustea non è nota. Il portone di bronzo a riquadri riprende quello originale, databile all'età di Domiziano e trasferito nel 1660 a San Giovanni in Laterano, dove si trova ancora; alla Curia oggi c'è una copia.</p></div>
+  </div>
   <details class="fg-cred"><summary>Crediti delle immagini e delle mappe</summary><div>
   <p><b>Ritratti.</b> Cleopatra, Altes Museum di Berlino: foto Louis le Grand, pubblico dominio. Augusto di Prima Porta, Musei Vaticani: foto Till Niermann, CC BY-SA 2.5. Ottaviano con corona civica, 29 a.C. circa, Musei Capitolini: foto Carole Raddato (Following Hadrian), CC BY-SA 2.0. Cicerone, Musei Capitolini: foto Glauco92, CC BY-SA 3.0. Pompeo, Louvre: foto Alphanidon, CC BY-SA 4.0. Agrippa, Louvre: foto Shawn Lipowski, CC BY-SA 2.5. Marco Antonio, busto di età flavia ai Musei Vaticani, identificazione tradizionale: foto Sergey Sosnovskiy (Ancientrome.ru), CC BY-SA 4.0. Cesare, ritratto postumo, Musei Vaticani: foto di autore ignoto, pubblico dominio. Catone, Museo di Rabat: foto Ángel M. Felicísimo, CC BY 2.0. Cosiddetto Bruto, Palazzo Massimo: foto Marie-Lan Nguyen, pubblico dominio. Forse Ottavia minore, testa da Palestrina, Palazzo Massimo: foto Marie-Lan Nguyen, CC BY 4.0. Sesto Pompeo, aureo del Cabinet des Médailles: foto Siren-Com, CC BY-SA 3.0. Lepido, denario del 42 a.C.: foto Classical Numismatic Group, CC BY-SA 3.0. Le foto provengono da Wikimedia Commons e sono state ritagliate. Chi non ha un ritratto attendibile è indicato con le iniziali del nome latino.</p>
   <p><b>Nuove sedute.</b> Silla: denario di Q. Pompeo Rufo, foto Classical Numismatic Group, CC BY-SA 2.5. Crasso: busto attribuito, Ny Carlsberg Glyptotek, foto Diagram Lajard, CC0. Vercingetorige: denario di L. Ostilio Saserna, ritratto incerto, foto Classical Numismatic Group, CC BY-SA 2.5. Denario di Cesare del 44 a.C., RRC 480/10 (CAESAR DICT PERPETVO, zecchiere P. Sepullio Macro): Classical Numismatic Group, Inc., www.cngcoins.com, CC BY-SA 2.5, via Wikimedia Commons; ritagliato e scontornato.</p>
@@ -944,9 +994,21 @@ var watch=$('fg-watch');if(watch)watch.addEventListener('click',function(){toMai
   <p><b>Epilogo.</b> Augusto di Prima Porta, Musei Vaticani: foto Till Niermann, CC BY-SA 2.5, ritagliata. Il testo dello scudo d'oro (clipeus virtutis) riproduce la copia marmorea di Arles.</p>
   <p><b>Mappe.</b> Coste da Natural Earth (pubblico dominio). Le aree colorate indicano chi controlla le province in quel momento; confini e aree sono approssimativi. Confini delle province e dei regni clienti tracciati in modo approssimativo, sulla base degli atlanti storici: quelli meglio documentati sono il Rubicone, il Varo, il Nesto, la Fossa regia in Africa e le frontiere dell'Egitto; percorsi, schieramenti e aree di influenza sono semplificati.</p>
   </div></details>
-  <p>Fonti: Appiano, Guerre civili; Cassio Dione, Storia romana; Plutarco, Vite; Svetonio, Vite dei Cesari; Res gestae divi Augusti; Livio, Periochae. Elaborazione FocusAmerica.</p>
-  <p><a href="https://github.com/angrisanidj/senato-roma/blob/main/CREDITS.md" target="_blank" rel="noopener">Crediti completi delle immagini, con i link alle fonti</a></p>
-</div>
+</section>
+
+<footer class="fg-colo">
+  <div class="fg-colo-in">
+    <div class="fg-colo-b">
+      <span class="fg-colo-m" aria-hidden="true">S·P·Q·R</span>
+      <div><strong>Il Senato da Silla ad Augusto</strong><span>Un'infografica interattiva di FocusAmerica · 79–27 a.C. in 25 sedute</span></div>
+    </div>
+    <p class="fg-colo-s"><b>Fonti antiche</b> Appiano, Guerre civili; Cassio Dione, Storia romana; Plutarco, Vite; Svetonio, Vite dei Cesari; Res gestae divi Augusti; Livio, Periochae.</p>
+    <div class="fg-colo-l">
+      <a href="https://github.com/angrisanidj/senato-roma/blob/main/CREDITS.md" target="_blank" rel="noopener">Crediti completi delle immagini</a>
+      <button type="button" id="fg-totop"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 13V3M3.5 7.5 8 3l4.5 4.5"/></svg>Torna all'inizio</button>
+    </div>
+  </div>
+</footer>
 
 <script>
 (function(){
@@ -1735,7 +1797,7 @@ var fmt=function(n){return n.toLocaleString('it-IT')};
 /* comparse allo scorrimento: solo con JavaScript attivo, mai per chi riduce il movimento */
 if(!RM&&window.IntersectionObserver){
   document.documentElement.classList.add('fg-js');
-  var sel='.fg-main>.fg-head,#fg-scene,#fg-flat,.fg-cast,.fg-tl,.fg-ctrl,.fg-barwrap,.fg-stat,.fg-story-k,#fg-txt,#fg-viz,.fg-src,.fg-recap-k,.fg-recap-t,.fg-recap-s,.fg-recap-box,.fg-recap-leg,.fg-foot>p,.fg-foot>details';
+  var sel='.fg-main>.fg-head,#fg-scene,#fg-flat,.fg-cast,.fg-tl,.fg-ctrl,.fg-barwrap,.fg-stat,.fg-story-k,#fg-txt,#fg-viz,.fg-src,.fg-recap-k,.fg-recap-t,.fg-recap-s,.fg-recap-box,.fg-recap-leg,.fg-note,.fg-notes>details';
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('fg-in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px',threshold:.06});
   var vh=window.innerHeight||800;
   [].forEach.call(root.querySelectorAll(sel),function(n,i){var r=n.getBoundingClientRect();if(r.top<vh*.92&&r.bottom>0)return;n.classList.add('fg-rv');if(n.classList.contains('fg-stat'))n.style.transitionDelay=(i%3*90)+'ms';io.observe(n)});
@@ -1905,7 +1967,50 @@ if(F)ahead(F.cur());
 @media print{#fg-share{display:none}}
 @media (max-width:979px){#fg-share{transition:transform .35s ease}html.fg-sh-off #fg-share{transform:translateY(115%)}html.fg-sh-off #fg-dock{bottom:calc(14px + env(safe-area-inset-bottom,0px))}}
 @media (min-width:980px){html.fg-sa #fg-share{left:max(14px,calc(50% - var(--W) / 2 - 74px))}}
+
+/* v7: pulsanti di condivisione nella palette della pagina */
+#fg-share a,#fg-share button{border-color:#D8CCB6;background:#FBF8F2;color:#6B4A26;box-shadow:0 1px 2px rgba(60,40,15,.08);transition:color .2s,border-color .2s,background .2s,transform .2s,box-shadow .2s}
+#fg-share a:hover,#fg-share button:hover,#fg-share a:focus-visible,#fg-share button:focus-visible{color:#F6E4B0;border-color:#7A1F2B;background:#7A1F2B;box-shadow:0 8px 16px -8px rgba(122,31,43,.7)}
+#fg-share a:focus-visible,#fg-share button:focus-visible{outline:2px solid #A87B2A;outline-offset:2px}
+@media (min-width:980px){
+  #fg-share{gap:9px;transition:opacity .3s}
+  #fg-share a,#fg-share button{width:40px;height:40px}
+  #fg-share svg{width:17px;height:17px}
+  #fg-share a:hover,#fg-share button:hover{transform:translateX(2px)}
+  html.fg-on-hero #fg-share a,html.fg-on-hero #fg-share button{background:rgba(255,255,255,.06);border-color:rgba(212,174,85,.45);color:#F1D99A;box-shadow:none;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+  html.fg-on-hero #fg-share a:hover,html.fg-on-hero #fg-share button:hover{background:rgba(212,174,85,.2);border-color:#F1D99A;color:#fff}
+}
+@media (max-width:979px){#fg-share{background:rgba(251,248,242,.94);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}}
+/* v7: barra in alto (solo pagina autonoma, schermi larghi) */
+#fg-top{display:none}
+@media (min-width:980px){
+  html.fg-sa #fg-top{display:flex;align-items:center;justify-content:space-between;gap:24px;position:fixed;left:0;right:0;top:0;z-index:65;height:50px;box-sizing:border-box;padding:0 max(20px,calc(50vw - var(--W)/2));background:rgba(245,241,232,.88);-webkit-backdrop-filter:blur(12px) saturate(1.2);backdrop-filter:blur(12px) saturate(1.2);border-bottom:1px solid #D8CCB6;box-shadow:0 8px 24px -18px rgba(60,40,15,.55);transform:translateY(-105%);transition:transform .45s cubic-bezier(.2,.8,.2,1);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif}
+  html.fg-sa.fg-top-on #fg-top{transform:none}
+  #fg-top button{font:inherit;border:0;background:none;cursor:pointer;padding:0;color:#2B2420}
+  #fg-top .fg-top-b{display:inline-flex;align-items:center;gap:12px;font-family:'Cinzel',Georgia,serif;font-size:13px;font-weight:700;letter-spacing:.06em;color:#7A1F2B;white-space:nowrap}
+  #fg-top .fg-top-b span{font-size:9.5px;letter-spacing:.1em;color:#85601A;border:1px solid #C9A85A;padding:5px 6px 4px;border-radius:2px}
+  #fg-top nav{display:flex;align-items:stretch;gap:4px;height:100%}
+  #fg-top nav button{position:relative;padding:0 14px;font-size:13px;font-weight:500;color:#6F6356;transition:color .2s}
+  #fg-top nav button::after{content:"";position:absolute;left:14px;right:14px;bottom:-1px;height:2px;background:#A87B2A;transform:scaleX(0);transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+  #fg-top nav button:hover{color:#2B2420}
+  #fg-top nav button.on{color:#7A1F2B;font-weight:600}
+  #fg-top nav button.on::after{transform:scaleX(1)}
+  #fg-top button:focus-visible{outline:2px solid #A87B2A;outline-offset:3px;border-radius:3px}
+  html.fg-sa.fg-top-on #fg-senato-44 .fg-colB{top:66px}
+  html.fg-sa #fg-senato-44 .fg-colB{transition:top .45s cubic-bezier(.2,.8,.2,1)}
+}
+@media print{#fg-top{display:none!important}}
+@media (prefers-reduced-motion:reduce){#fg-top,#fg-share a,#fg-share button{transition:none!important}}
 </style>
+<div id="fg-top">
+  <button type="button" class="fg-top-b" data-to="top"><span aria-hidden="true">S·P·Q·R</span>Il Senato da Silla ad Augusto</button>
+  <nav aria-label="Sezioni della pagina">
+    <button type="button" data-to=".fg-head">L'aula</button>
+    <button type="button" data-to=".fg-story">Il racconto</button>
+    <button type="button" data-to=".fg-recap">Il quadro d'insieme</button>
+    <button type="button" data-to=".fg-notes">Metodo e fonti</button>
+  </nav>
+</div>
 <nav id="fg-share" aria-label="Condividi questa pagina">
   <a data-net="x" aria-label="Condividi su X" title="X" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg></a>
   <a data-net="threads" aria-label="Condividi su Threads" title="Threads" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.964-.065-1.19.408-2.285 1.33-3.082.88-.76 2.119-1.207 3.583-1.291a13.853 13.853 0 0 1 3.02.142c-.126-.742-.375-1.332-.75-1.757-.513-.586-1.308-.883-2.359-.89h-.029c-.844 0-1.992.232-2.721 1.32L7.734 7.847c.98-1.454 2.568-2.256 4.478-2.256h.044c3.194.02 5.097 1.975 5.287 5.388.108.046.216.094.321.142 1.49.7 2.58 1.761 3.154 3.07.797 1.82.871 4.79-1.548 7.158-1.85 1.81-4.094 2.628-7.277 2.65Zm1.003-11.69c-.242 0-.487.007-.739.021-1.836.103-2.98.946-2.916 2.143.067 1.256 1.452 1.839 2.784 1.767 1.224-.065 2.818-.543 3.086-3.71a10.5 10.5 0 0 0-2.215-.221z"/></svg></a>
@@ -1941,6 +2046,26 @@ if(F)ahead(F.cur());
   nav.querySelector('[data-net="copy"]').addEventListener('click',function(){
     if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(url).then(function(){done('Link copiato')},legacy)}else{legacy()}
   });
+})();
+</script>
+
+<script>
+(function(){
+  var root=document.getElementById('fg-senato-44'),H=document.documentElement,top=document.getElementById('fg-top');if(!root)return;
+  var hero=root.querySelector('.fg-hero'),rm=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
+  function go(sel){var y=0;if(sel!=='top'){var n=root.querySelector(sel);if(!n)return;y=n.getBoundingClientRect().top+window.pageYOffset-66}
+    window.scrollTo({top:Math.max(0,y),behavior:rm?'auto':'smooth'})}
+  var tt=document.getElementById('fg-totop');if(tt)tt.addEventListener('click',function(){go('top')});
+  var btns=top?[].slice.call(top.querySelectorAll('[data-to]')):[];
+  btns.forEach(function(b){b.addEventListener('click',function(){go(b.getAttribute('data-to'))})});
+  var secs=btns.filter(function(b){return b.getAttribute('data-to')!=='top'}).map(function(b){return [b,root.querySelector(b.getAttribute('data-to'))]}).filter(function(p){return p[1]});
+  var tick=0;
+  function upd(){tick=0;var vh=window.innerHeight,hb=hero?hero.getBoundingClientRect().bottom:0;
+    H.classList.toggle('fg-on-hero',hb>vh*.5);H.classList.toggle('fg-top-on',hb<60);
+    var cur=null;secs.forEach(function(p){if(p[1].getBoundingClientRect().top<vh*.4)cur=p[0]});
+    secs.forEach(function(p){var on=p[0]===cur;p[0].classList.toggle('on',on);if(on)p[0].setAttribute('aria-current','true');else p[0].removeAttribute('aria-current')})}
+  function req(){if(!tick)tick=requestAnimationFrame(upd)}
+  window.addEventListener('scroll',req,{passive:true});window.addEventListener('resize',req);upd();setTimeout(upd,600);
 })();
 </script>
 
