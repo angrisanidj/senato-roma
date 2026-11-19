@@ -1277,7 +1277,7 @@ var vizWait={};
 function loadViz(isM,cb){var key=isM?'m':'d';function got(){if(isM)VIZM=window.__fgViz.m;else VIZ=window.__fgViz.d}
   if(window.__fgViz&&window.__fgViz[key]){got();if(cb)cb();return}
   if(vizWait[key]){if(cb)vizWait[key].push(cb);return}vizWait[key]=cb?[cb]:[];
-  var x=document.createElement('script');x.src=FGBASE+'data/viz-'+key+'.js?v=26';x.async=true;
+  var x=document.createElement('script');x.src=FGBASE+'data/viz-'+key+'.js?v=27';x.async=true;
   x.onload=function(){got();var q=vizWait[key];vizWait[key]=null;q.forEach(function(f){f()});root.dispatchEvent(new CustomEvent('fg:vizready'))};
   x.onerror=function(){vizWait[key]=null};document.head.appendChild(x)}
 function renderViz(k){var box=$('fg-vizbox'),isM=(box.clientWidth||root.clientWidth)<560,set=isM?VIZM:VIZ;vizMode=isM;vizK=k;
