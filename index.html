@@ -1678,6 +1678,16 @@ function start3D(){if(three||gave3D)return;var sc0=$('fg-scene');
   three.onTipOff=function(){tip.style.opacity='0';highlight(locked)};
   if(info&&Object.keys(info).length){three.setPhase(alloc(P[cur].g));if(three.epoch)three.epoch(cur);three.hl(locked)}
 }
+/* v8: lavori pesanti fuori dall'apertura. Se el si vede cb parte subito; altrimenti quando si comincia a scorrere
+   verso di lui, o comunque in un momento libero dopo `at` millisecondi dall'apertura della pagina. */
+var later=window.__fgLater=function(el,cb,at){
+  var done=false,io=null,vh=window.innerHeight||800,r=el.getBoundingClientRect();
+  function go(){if(done)return;done=true;if(io)io.disconnect();cb()}
+  if(r.bottom>0&&r.top<vh){go();return}
+  function arm(){window.removeEventListener('scroll',arm);if(done||io)return;if(!window.IntersectionObserver){go();return}io=new IntersectionObserver(function(e){if(e[0].isIntersecting)go()},{rootMargin:'60% 0px'});io.observe(el)}
+  if((window.pageYOffset||0)>4)arm();else window.addEventListener('scroll',arm,{passive:true});
+  setTimeout(function(){if(done)return;if(window.requestIdleCallback)requestIdleCallback(go,{timeout:1200});else go()},Math.max(0,at-performance.now()));
+};
 (function boot3D(){
   var ok=false;try{var c=document.createElement('canvas');ok=!!(window.WebGLRenderingContext&&(c.getContext('webgl')||c.getContext('experimental-webgl')))}catch(e){}
   if(!ok){no3D();return}
@@ -1685,7 +1695,7 @@ function start3D(){if(three||gave3D)return;var sc0=$('fg-scene');
   function load(src,done,fail){var x=document.createElement('script');x.src=src;x.async=true;x.onload=done;x.onerror=fail;document.head.appendChild(x)}
   var t=setTimeout(no3D,20000);
   function fail(){clearTimeout(t);no3D()}
-  load('https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js',function(){load('https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js',function(){clearTimeout(t);start3D()},fail)},fail);
+  load('https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js',function(){load('https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js',function(){clearTimeout(t);later(sc0,start3D,3600)},fail)},fail);
 })();
 
 sizeDesc();
@@ -1905,23 +1915,42 @@ function bake(id){
   for(var i=0;i<need.length;i++){var e=document.getElementById(need[i]);if(e)defs+=new XMLSerializer().serializeToString(e)}
   var svg='<svg xmlns="'+NS+'" xmlns:xlink="http://www.w3.org/1999/xlink" width="'+(W*sc)+'" height="'+(H*sc)+'" viewBox="0 0 '+W+' '+H+'"><defs>'+defs+'</defs>'+[].map.call(g.childNodes,function(n){return new XMLSerializer().serializeToString(n)}).join('')+'</svg>';
   var url=URL.createObjectURL(new Blob([svg],{type:'image/svg+xml'})),im=new Image();
+  function end(){done[id]=1;busy[id]=0;URL.revokeObjectURL(url)}
+  function put(out){var ni=document.createElementNS(NS,'image');ni.setAttribute('width',W);ni.setAttribute('height',H);ni.setAttribute('href',out);ni.setAttribute('preserveAspectRatio','none');
+    while(g.firstChild)g.removeChild(g.firstChild);g.appendChild(ni);end()}
+  /* l'immagine pronta si decodifica prima dello scambio, cosi' la mappa non lampeggia */
+  function swap(out){var pi=new Image();pi.onload=function(){put(out)};pi.onerror=end;pi.src=out}
   im.onload=function(){try{
       var c=document.createElement('canvas');c.width=W*sc;c.height=H*sc;c.getContext('2d').drawImage(im,0,0,c.width,c.height);
-      var out=c.toDataURL('image/webp',.9);if(out.indexOf('data:image/webp')!==0)out=c.toDataURL('image/jpeg',.9);
-      var ni=document.createElementNS(NS,'image');ni.setAttribute('width',W);ni.setAttribute('height',H);ni.setAttribute('href',out);ni.setAttribute('preserveAspectRatio','none');
-      while(g.firstChild)g.removeChild(g.firstChild);g.appendChild(ni);done[id]=1;
-    }catch(err){done[id]=1}URL.revokeObjectURL(url);busy[id]=0};
-  im.onerror=function(){done[id]=1;busy[id]=0;URL.revokeObjectURL(url)};
+      var data=function(){try{var o=c.toDataURL('image/webp',.9);if(o.indexOf('data:image/webp')!==0)o=c.toDataURL('image/jpeg',.9);swap(o)}catch(e){end()}};
+      if(!c.toBlob){data();return}
+      c.toBlob(function(bl){
+        if(bl&&bl.type==='image/webp'){swap(URL.createObjectURL(bl));return}
+        c.toBlob(function(b2){if(b2)swap(URL.createObjectURL(b2));else data()},'image/jpeg',.9);
+      },'image/webp',.9);
+    }catch(err){end()}};
+  im.onerror=end;
   im.src=url;
 }
 function scan(root){[].forEach.call((root||document).querySelectorAll('use[href^="#fg-map-"]'),function(u){bake(u.getAttribute('href').slice(1))})}
-var box=document.getElementById('fg-vizbox');
-if(box&&window.MutationObserver)new MutationObserver(function(){scan(box)}).observe(box,{childList:true});
-scan(box);
-/* le altre mappe, nei momenti liberi */
-var mob=(box&&box.clientWidth||800)<560,rest=[].map.call(document.querySelectorAll('svg.fg-defs g[id^="fg-map-"]'),function(g){return g.id}).filter(function(id){return /-m$/.test(id)===mob});
-var idle=window.requestIdleCallback||function(f){return setTimeout(f,400)};
-(function next(){if(!rest.length)return;idle(function(){bake(rest.shift());setTimeout(next,150)})})();
+var box=document.getElementById('fg-vizbox');if(!box)return;
+/* quando l'aula 3D ha finito di prepararsi (o ha rinunciato) */
+function after3D(cb){var s3=document.getElementById('fg-scene'),t0=performance.now();(function w(){if(s3&&s3.classList.contains('fg-loading')&&performance.now()-t0<25000)setTimeout(w,250);else cb()})()}
+var lateFn=window.__fgLater||function(el,cb){cb()};
+/* la mappa della seduta in vista: subito se si vede, altrimenti a fine apertura */
+function soon(){lateFn(box,function(){scan(box)},4200)}
+if(window.MutationObserver)new MutationObserver(soon).observe(box,{childList:true});
+soon();
+/* le altre mappe: una alla volta, nei momenti liberi, mai mentre si scorre */
+var mob=(box.clientWidth||800)<560,rest=[].map.call(document.querySelectorAll('svg.fg-defs g[id^="fg-map-"]'),function(g){return g.id}).filter(function(id){return /-m$/.test(id)===mob});
+var moved=0;window.addEventListener('scroll',function(){moved=performance.now()},{passive:true});
+var idle=window.requestIdleCallback?function(f){requestIdleCallback(f,{timeout:4000})}:function(f){setTimeout(f,300)};
+function next(){
+  while(rest.length&&(done[rest[0]]||busy[rest[0]]))rest.shift();
+  if(!rest.length)return;
+  idle(function(){if(document.hidden||performance.now()-moved<600){setTimeout(next,700);return}bake(rest.shift());setTimeout(next,900)});
+}
+after3D(function(){setTimeout(next,Math.max(1500,5500-performance.now()))});
 })();
 </script>
 
