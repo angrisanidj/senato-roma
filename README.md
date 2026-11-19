@@ -1,6 +1,6 @@
 # Il Senato da Silla ad Augusto (79–27 a.C.)
 
-Infografica interattiva in italiano, realizzata per **FocusAmerica**, sulla trasformazione del Senato romano dalla dittatura di Silla al principato di Augusto, in 25 sedute.
+Infografica interattiva in italiano, realizzata per **FocusAmerica**, sulla trasformazione del Senato romano dalla dittatura di Silla al principato di Augusto, in 26 sedute.
 
 Per ogni seduta la pagina mostra:
 
@@ -11,7 +11,7 @@ Per ogni seduta la pagina mostra:
 
 Navigazione:
 
-- una minimappa sopra la linea del tempo mostra la composizione dell'aula in tutte le 25 sedute e si trascina per scorrere;
+- una minimappa sopra la linea del tempo mostra la composizione dell'aula in tutte le 26 sedute e si trascina per scorrere;
 - quando i comandi escono dallo schermo compare una barra fluttuante con seduta precedente, riproduzione e seduta successiva;
 - le frecce ← → sfogliano le sedute; ogni seduta ha un indirizzo diretto (`#seduta-13`), usato anche dai pulsanti di condivisione;
 - aperta da sola (non incorporata), la pagina ha un'apertura a tutto schermo e, sopra i 1100 px, l'aula e le fazioni affiancate;
@@ -33,8 +33,8 @@ src/
   mapgen/
     partA.mjs         proiezioni e mappe di base (Natural Earth via world-atlas)
     partB.mjs         grafici (Silla, censori, dibattito, triumvirati, voti)
-    partC.mjs         motore delle mappe, confini delle province, sedute 8–25, scena di Augusto
-    partD.mjs         sedute 1–14 e scene illustrate (Rubicone, Cleopatra, Alesia, funerale, morte di Cleopatra…)
+    partC.mjs         motore delle mappe, confini delle province, sedute dal voto di Curione in poi, scena di Augusto
+    partD.mjs         sedute dal 79 al 44 a.C. e scene illustrate (Rubicone, Cleopatra, Alesia, funerale, morte di Cleopatra…)
     assemble.py       unisce le quattro parti nel generatore gen2.mjs
     package.json
 ```

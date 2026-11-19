@@ -1015,6 +1015,33 @@ function sceneCleoDeath() {
   s += `<rect x="0" y="0" width="${W}" height="${MOB ? 78 : 58}" fill="#08040A" opacity=".5"/><text x="${MOB ? 16 : 26}" y="${MOB ? 32 : 36}" fill="#F1D99A" style="${CAP};font-size:${F(MOB ? 15 : 19)}px;font-weight:700">La morte di Cleopatra</text><text x="${MOB ? 16 : 26}" y="${MOB ? f1(32 + F(16)) : 54}" fill="#E8DCC8" style="font-size:${F(MOB ? 10 : 12)}px">Alessandria, il mausoleo della regina, agosto 30 a.C.</text>`;
   return s;
 }
+function chart58() {
+  const cid = `fg58c${MOB ? 'm' : 'd'}`;
+  let s = head('Roma, 58 a.C.', MOB ? 'il Senato perde le sue voci' : 'Cesare parte, Clodio resta: il Senato perde le sue due voci più forti');
+  s += `<defs><clipPath id="${cid}" clipPathUnits="objectBoundingBox"><circle cx=".5" cy=".5" r=".5"/></clipPath></defs>`;
+  const rows = MOB ? [
+    [null, 'P·C·P', 'Clodio tribuno', CP.pop, ['grano gratuito alla plebe,', 'bande di quartiere: la piazza è sua']],
+    ['cicerone', '', 'Cicerone in esilio', CP.opt, ['colpito da una legge di Clodio,', 'lascia Roma: la casa è demolita']],
+    ['catone', '', 'Catone a Cipro', CP.opt, ['incaricato di annettere l\'isola:', 'resta lontano fino al 56']],
+    ['cesare', '', 'Cesare in Gallia', CP.ces, ['aspetta che Cicerone sia partito,', 'poi raggiunge le legioni']]
+  ] : [
+    [null, 'P·C·P', 'Clodio, tribuno della plebe', CP.pop, ['Cesare lo lascia a Roma come alleato.', 'Grano gratuito alla plebe e associazioni', 'di quartiere legali: la piazza è sua.']],
+    ['cicerone', '', 'Cicerone va in esilio', CP.opt, ['Marzo 58: una legge colpisce chi ha messo', 'a morte cittadini senza processo.', 'Lascia Roma; la sua casa è demolita.']],
+    ['catone', '', 'Catone mandato a Cipro', CP.opt, ['Un incarico che non può rifiutare:', 'annettere l\'isola e il tesoro del re.', 'Resta lontano fino al 56.']],
+    ['cesare', '', 'Cesare parte per la Gallia', CP.ces, ['Attende alle porte di Roma che Cicerone', 'sia partito, poi raggiunge le legioni:', 'ha un comando di cinque anni.']]
+  ];
+  rows.forEach((r, i) => {
+    const d = (.3 + i * 1.15).toFixed(2), rr = MOB ? 30 : 36;
+    const x = MOB ? 50 : (i % 2 ? 452 : 82), y = MOB ? 134 + i * 92 : (i < 2 ? 156 : 296), tx = x + rr + (MOB ? 16 : 20);
+    const dark = r[3] === CP.opt ? '#1D6B4A' : r[3] === CP.pop ? '#B4471F' : r[3];
+    s += r[0] ? faceM(cid, r[0], x, y, rr, r[3], d) : initM(x, y, rr, r[1], d);
+    s += `<g class="pop" style="animation-delay:${d}s"><text x="${tx}" y="${f1(y - (MOB ? F(10) : 20))}" fill="${dark}" style="${CAP};font-size:${F(MOB ? 13.5 : 15.5)}px;font-weight:700">${r[2]}</text></g>`;
+    r[4].forEach((l, j) => { s += `<text class="pop" x="${tx}" y="${f1(MOB ? y + F(5) + j * F(13.5) : y + 1 + j * 18)}" fill="${C.ink}" style="animation-delay:${(+d + .3 + j * .12).toFixed(2)}s;font-size:${F(MOB ? 10.8 : 12.8)}px">${l}</text>`; });
+  });
+  if (!MOB) s += `<line class="dr" pathLength="1" x1="400" y1="112" x2="400" y2="346" stroke="#D8CCB6" stroke-width="1" style="animation-delay:.2s"/><line class="dr" pathLength="1" x1="46" y1="228" x2="754" y2="228" stroke="#D8CCB6" stroke-width="1" style="animation-delay:.2s"/>`;
+  s += `<text class="pop" x="${W / 2}" y="${H - (MOB ? 14 : 22)}" text-anchor="middle" fill="#7A1F2B" style="animation-delay:5s;${CAP};font-size:${F(MOB ? 10.5 : 13)}px;font-weight:700">${MOB ? 'Cicerone rientra nel settembre 57' : 'Cicerone rientra a Roma solo nel settembre 57, richiamato dal voto del popolo'}</text>`;
+  return s;
+}
 function shiftSvg(svg, off) {
   return svg.replace(/animation-delay:(-?[\d.]+)s/g, (m, x) => `animation-delay:${(+x + off).toFixed(2)}s`).replace(/animation:(fgcam\w+) ([\d.]+)s ease-in-out both/g, (m, n, d) => `animation:${n} ${d}s ease-in-out ${off}s both`);
 }
@@ -1041,5 +1068,7 @@ function buildViz() {
   V[8] = { svg: `<g class="act" style="animation-delay:0s;animation-duration:8.2s">${sceneRubicon()}</g><g class="act last" style="animation-delay:7.9s">${shiftSvg(V[8].svg, 8.1)}</g>`, cap: 'Nella notte tra il 10 e l\'11 gennaio 49 a.C. Cesare passa con la XIII legione il Rubicone, confine tra la sua provincia e l\'Italia, dove un governatore non poteva entrare in armi. «Il dado è tratto» è la frase riportata da Svetonio (Cesare 32); secondo Plutarco la pronunciò in greco, citando il commediografo Menandro. Poi la mappa: Pompeo e metà del Senato lasciano l\'Italia, Cesare vince a Farsalo, Pompeo viene ucciso in Egitto.', leg: V[8].leg };
   V[14] = { svg: `<g class="act" style="animation-delay:0s;animation-duration:10.4s">${sceneFuneral()}</g><g class="act last" style="animation-delay:10.1s">${shiftSvg(V[14].svg, 10.3)}</g>`, cap: 'Il 20 marzo 44 a.C. Antonio pronuncia l\'elogio funebre di Cesare, legge il testamento, che lascia 300 sesterzi a ogni cittadino, e mostra la toga insanguinata; la folla brucia il corpo nel Foro e assale le case dei congiurati (Appiano, Guerre civili II 143–148; Plutarco, Bruto 20). A metà aprile Cleopatra lascia Roma con Cesarione: Cicerone ne prende nota con sollievo (Ad Attico XIV 8). Poi la mappa: nei mesi successivi Ottaviano sbarca in Puglia e raggiunge Roma, mentre Bruto e Cassio partono per l\'Oriente.', leg: V[14].leg };
   V[16] = { svg: chartTriumv2(), cap: 'Novembre 43 a.C. Dopo l\'incontro presso Bononia, la lex Titia fa di Antonio, Ottaviano e Lepido i «triumviri per rifondare lo Stato» per cinque anni e divide tra loro le province d\'Occidente (Appiano IV 2–3; Cassio Dione XLVI 55).', leg: [] };
+  /* la seduta del 58 a.C. si inserisce dopo il triumvirato: gli indici qui sopra restano quelli delle 25 sedute originarie */
+  V.splice(4, 0, { svg: chart58(), cap: 'Tribuno della plebe dal 10 dicembre 59, Publio Clodio fa approvare la distribuzione gratuita del grano e rende di nuovo legali i collegia, le associazioni di quartiere sciolte dal Senato nel 64. La legge che manda in esilio Cicerone è del marzo 58; il richiamo viene votato il 4 agosto 57 (Plutarco, Cicerone 30–33; Cassio Dione XXXVIII 12–17). Catone parte per Cipro nel 58 e rientra nel 56 (Plutarco, Catone minore 34–39).', leg: [] });
   return V;
 }

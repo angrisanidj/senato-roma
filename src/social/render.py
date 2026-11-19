@@ -16,7 +16,7 @@ def shot(html, out, w, h):
         '--virtual-time-budget=6000', f'--user-data-dir={TMP / "prof"}', f'--screenshot={out}',
         f'--window-size={w},{h}', f.as_uri()], check=True, capture_output=True)
 
-# Striscia in basso: la composizione dell'aula in ognuna delle 25 sedute, dai dati di index.html
+# Striscia in basso: la composizione dell'aula in ognuna delle 26 sedute, dai dati di index.html
 import re
 page = (ROOT / 'index.html').read_text(encoding='utf-8')
 gruppi = {m.group(1): (m.group(2), bool(m.group(3))) for m in re.finditer(r'(\w+):\{n:"[^"]*",c:"(#[0-9A-Fa-f]{6})"(,h:1)?', page[page.index('groups:{'):page.index('eras:[')])}
@@ -27,7 +27,7 @@ for m in re.finditer(r'g:\[(\[.*?\])\],txt:', page):
         c, assente = gruppi[gid]
         if not assente: col += f'<i style="flex:{n} 1 0px;background:{c}"></i>'
     strip.append(f'<div>{col}</div>')
-assert len(strip) == 25, len(strip)
+assert len(strip) == 26, len(strip)
 aug = 'data:image/jpeg;base64,' + (ROOT / 'src/assets/aug.b64').read_text().strip()
 og = (HERE / 'og.html').read_text(encoding='utf-8').replace('{{AUG}}', aug).replace('{{STRIP}}', ''.join(strip))
 shot(og, ROOT / 'og-image.png', 1200, 630)
